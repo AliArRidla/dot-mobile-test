@@ -221,6 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return Container(
         width: 296,
         height: 50,
+
         // width: double.infinity,
         margin: EdgeInsets.only(top: 30),
         child: TextButton(
