@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: Container(
         child: Center(
           child: Text("ini home"),
