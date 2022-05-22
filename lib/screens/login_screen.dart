@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    // AuthProvider authProvider = Provider.of<AuthProvider>(context);
     handleSignIn() async {
       setState(() {
         isLoading = true;
@@ -52,22 +52,73 @@ class _LoginScreenState extends State<LoginScreen> {
           });
         }
 
-        return HomeScreen();
-      } else if (emailController.text.isEmpty) {
+        if (passwordController.text.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: secondaryColor,
+              content: Text(
+                'Password nya harus diisi',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        } else if (passwordController.text.isNotEmpty) {
+          var jumlah = passwordController.text.length;
+          bool passValid = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z]).{6,}$')
+              .hasMatch(passwordController.text);
+          if (passValid) {
+            Navigator.pushNamed(context, '/home');
+            // if (passValid) {
+            //   setState(() {
+            //     isLoading = true;
+            //   });
+            // } else {
+            //   ScaffoldMessenger.of(context).showSnackBar(
+            //     SnackBar(
+            //       backgroundColor: secondaryColor,
+            //       content: Text(
+            //         'Password sesuai',
+            //         textAlign: TextAlign.center,
+            //       ),
+            //     ),
+            //   );
+            // }
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: secondaryColor,
+                content: Text(
+                  'Password minimal 6 karakter dan 1 Uppercase',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            );
+            setState(() {
+              isLoading = false;
+            });
+          }
+        }
+
+        // return HomeScreen();
+      } else if (passwordController.text.isEmpty ||
+          emailController.text.isNotEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: secondaryColor,
             content: Text(
-              'Email nya harus diisi',
+              'Email nya harus diisi ya',
               textAlign: TextAlign.center,
             ),
           ),
         );
+        setState(() {
+          isLoading = false;
+        });
+      } else {
+        // setState(() {
+        //   isLoading = false;
+        // });
       }
-      
-      setState(() {
-        isLoading = false;
-      });
     }
 
     Widget header() {
@@ -76,7 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Text(
               "Log In",
-              style: textTitle.copyWith(color: primaryTextColor, fontSize: 35),
+              style: textTitle.copyWith(
+                color: primaryTextColor,
+                fontSize: 35,
+              ),
             ),
             Text("Silahkan login untuk melanjutkan", style: textBody)
           ],
@@ -89,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Username", style: textSubHeading, textAlign: TextAlign.left),
+            Text("Email", style: textSubHeading, textAlign: TextAlign.left),
             SizedBox(
               height: 7,
             ),
@@ -113,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                       controller: emailController,
                       decoration: InputDecoration.collapsed(
-                          hintText: "Masukkan Username disini",
+                          hintText: "Masukkan Email disini",
                           hintStyle: textField),
                     ))
                   ],
@@ -190,13 +244,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 30),
+        margin: EdgeInsets.only(bottom: 30, left: 20, right: 20),
         child: Center(
           child: Text(
             "silahkan tanya admin IT jika anda lupa password atau belum memiliki akun.",
             textAlign: TextAlign.center,
             style: textBody.copyWith(
-                color: primaryColor, fontWeight: FontWeight.bold),
+                color: secondaryTextColor, fontWeight: FontWeight.bold),
           ),
         ),
       );
