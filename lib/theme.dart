@@ -10,33 +10,32 @@ Color secondaryTwoColor = Color(0xffFD656B);
 Color fieldColor = Color(0xfff1f1f1);
 
 Color primaryTextColor = Color(0xff474747);
-Color secondaryTextColor = Color(0xffB4B4B4);
-
+Color secondaryTextColor = Color.fromARGB(255, 164, 163, 163);
 
 // Title
 TextStyle textTitle = GoogleFonts.poppins(
-  color:primaryColor,
+  color: primaryColor,
   fontWeight: FontWeight.w600,
   fontSize: 45,
 );
 
 // Heading
 TextStyle textHeading = GoogleFonts.poppins(
-  color:primaryColor,
+  color: primaryColor,
   fontWeight: FontWeight.w500,
   fontSize: 21,
 );
 
 // SubHeading
 TextStyle textSubHeading = GoogleFonts.poppins(
-  color:primaryTextColor,  
+  color: primaryTextColor,
   fontSize: 15,
   fontWeight: FontWeight.w400,
 );
 
 // Body
 TextStyle textBody = GoogleFonts.poppins(
-  color:secondaryTextColor,  
+  color: secondaryTextColor,
   fontSize: 12,
   fontWeight: FontWeight.w200,
 );
@@ -44,11 +43,10 @@ TextStyle textBody = GoogleFonts.poppins(
 
 // Body
 TextStyle textField = GoogleFonts.poppins(
-  color:secondaryTextColor,  
+  color: secondaryTextColor,
   fontSize: 13,
   fontWeight: FontWeight.w300,
 );
-
 
 // satu
 TextStyle satuTextStyle = GoogleFonts.poppins(
@@ -57,7 +55,7 @@ TextStyle satuTextStyle = GoogleFonts.poppins(
   fontSize: 40,
 );
 
-// 
+//
 TextStyle buttonTextStyle = GoogleFonts.poppins(
   color: Colors.white,
   fontWeight: FontWeight.w500,

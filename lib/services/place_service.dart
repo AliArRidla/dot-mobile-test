@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class PlaceService {
   String baseUrl = 'https://dot-mobile-test.web.app';
-  Future<List<PlaceModel>> getGalerys() async {
+  Future<List<PlaceModel>> getPlaces() async {
       var url = '$baseUrl/place.json';
     var headers = {
       'Content-Type': 'application/json',

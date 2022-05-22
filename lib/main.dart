@@ -1,4 +1,5 @@
 import 'package:berdikari_absensi/providers/galery_provider.dart';
+import 'package:berdikari_absensi/providers/place_provider.dart';
 import 'package:berdikari_absensi/providers/profile_provider.dart';
 import 'package:berdikari_absensi/screens/home_screen.dart';
 import 'package:berdikari_absensi/screens/login_screen.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => GaleryProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PlaceProvider(),
         ),
       ],
       child: MaterialApp(
