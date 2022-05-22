@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(dot LANGUAGES CXX)
+project(berdikari_absensi LANGUAGES CXX)
 
-set(BINARY_NAME "dot")
+set(BINARY_NAME "berdikari_absensi")
 
 cmake_policy(SET CMP0063 NEW)
 
