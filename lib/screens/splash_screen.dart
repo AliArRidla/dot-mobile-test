@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:berdikari_absensi/providers/galery_provider.dart';
 import 'package:berdikari_absensi/providers/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   getAllData() async {
     await Provider.of<ProfileProvider>(context, listen: false).getProfile();
+    await Provider.of<GaleryProvider>(context, listen: false).getGalerys();
   }
 
   Widget build(BuildContext context) {
