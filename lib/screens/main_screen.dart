@@ -18,15 +18,7 @@ final List<Widget> _myPages = [HomeScreen(), GaleryScreen(), ProfileScreen()];
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          "Place",
-          style: headingTextStyle,
-        ),
-      ),
+    return Scaffold(      
       body: _myPages[selectedPage],
       bottomNavigationBar: BottomNavigationBar(
         items: [

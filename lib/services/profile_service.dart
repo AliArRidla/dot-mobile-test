@@ -12,11 +12,12 @@ class ProfileService {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.get(baseUrl);
-
+    final response = await http.get(url, headers: headers);
+    print(response);
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
       ProfileModel profile = ProfileModel.fromJson(data);
+      print(profile);
       return profile;
     } else {
       throw Exception('Failed to load profile');
