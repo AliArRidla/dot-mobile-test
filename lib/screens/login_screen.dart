@@ -1,6 +1,7 @@
 import 'package:berdikari_absensi/models/attendance_model.dart';
 import 'package:berdikari_absensi/providers/attendance_provider.dart';
 import 'package:berdikari_absensi/providers/auth_provider.dart';
+import 'package:berdikari_absensi/screens/home_screen.dart';
 import 'package:berdikari_absensi/screens/widgets/button_loading.dart';
 import 'package:berdikari_absensi/services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -15,35 +16,55 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
   TextEditingController passwordController = TextEditingController(text: '');
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    handleIdMasuk(String token) {}
     handleSignIn() async {
       setState(() {
         isLoading = true;
       });
 
-      if (await authProvider.login(
-        username: nameController.text,
-        password: passwordController.text,
-      )) {
-        Navigator.pushNamed(context, '/home');
-      } else {
+      // validasi email dan password
+
+      if (emailController.text.isNotEmpty) {
+        bool emailValid = RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(emailController.text);
+        if (emailValid) {
+          setState(() {
+            isLoading = false;
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: secondaryColor,
+              content: Text(
+                'Email nya harus diisi dengan benar',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+          setState(() {
+            isLoading = false;
+          });
+        }
+
+        return HomeScreen();
+      } else if (emailController.text.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: secondaryColor,
             content: Text(
-              'Gagal Login!',
+              'Email nya harus diisi',
               textAlign: TextAlign.center,
             ),
           ),
         );
       }
-
+      
       setState(() {
         isLoading = false;
       });
@@ -90,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(width: 20),
                     Expanded(
                         child: TextFormField(
-                      controller: nameController,
+                      controller: emailController,
                       decoration: InputDecoration.collapsed(
                           hintText: "Masukkan Username disini",
                           hintStyle: textField),
@@ -152,10 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // width: double.infinity,
         margin: EdgeInsets.only(top: 30),
         child: TextButton(
-          // onPressed: () {
-          //   handleSignIn();
-          //   Navigator.pushNamed(context, "/home");
-          // },
           onPressed: handleSignIn,
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
