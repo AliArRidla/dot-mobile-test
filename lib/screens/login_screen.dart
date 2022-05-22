@@ -4,6 +4,7 @@ import 'package:berdikari_absensi/screens/widgets/button_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -16,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController(text: '');
   TextEditingController passwordController = TextEditingController(text: '');
   bool isLoading = false;
+  var log;
   @override
   Widget build(BuildContext context) {
     // AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -64,22 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
           bool passValid = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z]).{6,}$')
               .hasMatch(passwordController.text);
           if (passValid) {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            log = prefs.setString('email', emailController.text);
             Navigator.pushNamed(context, '/home');
-            // if (passValid) {
-            //   setState(() {
-            //     isLoading = true;
-            //   });
-            // } else {
-            //   ScaffoldMessenger.of(context).showSnackBar(
-            //     SnackBar(
-            //       backgroundColor: secondaryColor,
-            //       content: Text(
-            //         'Password sesuai',
-            //         textAlign: TextAlign.center,
-            //       ),
-            //     ),
-            //   );
-            // }
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -111,11 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           isLoading = false;
         });
-      } else {
-        // setState(() {
-        //   isLoading = false;
-        // });
-      }
+      } else if (log != null) {
+        Navigator.pushNamed(context, '/home');
+      } else {}
     }
 
     Widget header() {
