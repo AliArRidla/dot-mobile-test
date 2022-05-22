@@ -1,4 +1,6 @@
+import 'package:berdikari_absensi/screens/galery_screen.dart';
 import 'package:berdikari_absensi/screens/home_screen.dart';
+import 'package:berdikari_absensi/screens/profile_screen.dart';
 import 'package:berdikari_absensi/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class MainScreen extends StatefulWidget {
 
 int selectedPage = 0;
 
-final List<Widget> _myPages = [HomeScreen()];
+final List<Widget> _myPages = [HomeScreen(), GaleryScreen(), ProfileScreen()];
 
 class _MainScreenState extends State<MainScreen> {
   @override
