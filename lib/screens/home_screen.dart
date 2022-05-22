@@ -1,13 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:berdikari_absensi/models/absen_model.dart';
-import 'package:berdikari_absensi/models/attendance_model.dart';
-import 'package:berdikari_absensi/providers/attendance_provider.dart';
-import 'package:berdikari_absensi/theme.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:berdikari_absensi/models/user_model.dart';
-import 'package:berdikari_absensi/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  UserModel user = new UserModel();
 
   @override
   void initState() {
@@ -36,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      // appBar: AppBar(),
+      appBar: AppBar(),
       body: Container(
         child: Center(
           child: Text("ini home"),

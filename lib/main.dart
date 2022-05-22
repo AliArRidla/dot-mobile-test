@@ -1,4 +1,3 @@
-import 'package:berdikari_absensi/providers/attendance_provider.dart';
 import 'package:berdikari_absensi/screens/home_screen.dart';
 import 'package:berdikari_absensi/screens/login_screen.dart';
 import 'package:berdikari_absensi/screens/main_screen.dart';
@@ -6,7 +5,7 @@ import 'package:berdikari_absensi/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:berdikari_absensi/routes.dart';
-import 'package:berdikari_absensi/providers/auth_provider.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -20,12 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers:[
-        ChangeNotifierProvider(
-          create: (context) => AuthProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => AttendanceProvider(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => AuthProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (context) => AttendanceProvider(),
+        // ),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
