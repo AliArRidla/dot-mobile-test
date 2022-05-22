@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PlaceModel {
+class ProfileModel {
   // "id" : 1,
   //       "username" : "olivia",
   //       "fullname" : "Olivia Jensen",
@@ -14,7 +14,7 @@ class PlaceModel {
   String phone;
   String avatar;
 
-  PlaceModel({
+  ProfileModel({
     this.id,
     this.nama,
     this.namaLengkap,
@@ -23,7 +23,7 @@ class PlaceModel {
     this.avatar,
   });
 
-  PlaceModel.fromJson(Map<String, dynamic> json){
+  ProfileModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     nama = json['username'];
     namaLengkap = json['fullname'];
